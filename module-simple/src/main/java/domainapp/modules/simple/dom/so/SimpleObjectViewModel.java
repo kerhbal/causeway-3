@@ -45,7 +45,7 @@ public class SimpleObjectViewModel {
     @XmlTransient
     @CollectionLayout(paged = 5)
     public List<SimpleObjectDto> getSimpleObjectList(){
-        return simpleObjectRepository.findAll().stream().map(s -> new SimpleObjectDto(s.getName())).collect(Collectors.toList());
+        return simpleObjectRepository.findAll().stream().map(s -> new SimpleObjectDto(s.getName(), s.getTestTime())).collect(Collectors.toList());
     }
 
     @Autowired

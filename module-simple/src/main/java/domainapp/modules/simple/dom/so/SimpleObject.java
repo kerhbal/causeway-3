@@ -1,5 +1,6 @@
 package domainapp.modules.simple.dom.so;
 
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneOffset;
 import java.util.Comparator;
@@ -108,6 +109,7 @@ public class SimpleObject implements Comparable<SimpleObject>, CalendarEventable
     public static SimpleObject withName(final String name) {
         val simpleObject = new SimpleObject();
         simpleObject.setName(name);
+        simpleObject.setTestTime(LocalDateTime.now());
         return simpleObject;
     }
 
@@ -130,6 +132,11 @@ public class SimpleObject implements Comparable<SimpleObject>, CalendarEventable
     @Property(commandPublishing = Publishing.ENABLED, executionPublishing = Publishing.ENABLED)
     @PropertyLayout(fieldSetId = LayoutConstants.FieldSetId.DETAILS, sequence = "2")
     private String notes;
+
+    @Column(nullable = false, name = "testTime")
+    @Getter @Setter @ToString.Include
+    @PropertyLayout(fieldSetId = LayoutConstants.FieldSetId.IDENTITY, sequence = "3")
+    private LocalDateTime testTime;
 
     @AttributeOverrides({
             @AttributeOverride(name="name",    column=@Column(name="attachment_name")),
